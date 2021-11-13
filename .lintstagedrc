@@ -4,7 +4,6 @@
     "git add"
   ],
   "src/**/*.{ts,tsx}": [
-    "eslint",
-    "jest --findRelatedTests"
+    "eslint"
   ]
 }

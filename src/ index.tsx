@@ -1,5 +1,7 @@
 import * as React from 'react';
 
-export default function () {
-  return <div>Awesome lib</div>;
-}
+const main = () => {
+  return <div>Awesome lib 12</div>;
+};
+
+export default main;
