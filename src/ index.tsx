@@ -1,7 +1,9 @@
-import * as React from 'react';
+import LazyContainer from './Lazy.Container';
+import LazyItem from './Lazy.Item';
+import LazyPlaceHolder from './Lazy.Placeholder';
 
-const main = () => {
-  return <div>Awesome lib 12</div>;
+export const Lazy = {
+  Contaniner: LazyContainer,
+  Item: LazyItem,
+  Placeholder: LazyPlaceHolder,
 };
-
-export default main;
