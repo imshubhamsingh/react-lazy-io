@@ -27,5 +27,5 @@ yarn.lock
 coverage
 stories
 tests
-example
+examples
 __tests__
