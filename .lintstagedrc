@@ -1,0 +1,10 @@
+{
+  "*.{js,json,css,md,ts,tsx}": [
+    "prettier --write",
+    "git add"
+  ],
+  "src/**/*.{ts,tsx}": [
+    "eslint",
+    "jest --findRelatedTests"
+  ]
+}
