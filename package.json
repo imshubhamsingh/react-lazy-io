@@ -2,7 +2,8 @@
   "name": "react-lazy-io",
   "version": "0.0.0",
   "description": "react lazyload using using IntersectionObserver API",
-  "main": "index.js",
+  "module": "build/index.esm.js",
+  "main": "build/index.js",
   "author": "Shubham Singh",
   "sideEffects": false,
   "license": "MIT",
@@ -10,9 +11,19 @@
     "lint": "eslint .",
     "lint-staged": "lint-staged",
     "postinstall": "husky install",
-    "prepublishOnly": "pinst --disable",
+    "local:publish": "yalc publish",
+    "prepublishOnly": "yarn run build && pinst --disable",
     "postpublish": "pinst --enable",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "clean": "rm -rf build",
+    "build": "rollup --c ./rollup.config.js",
+    "build:debug": "rollup -c ./rollup.config.js --config-debug -w"
+  },
+  "export": {
+    ".": {
+      "require": "./build/index.js",
+      "import": "./build/index.esm.js"
+    }
   },
   "repository": {
     "type": "git",
@@ -28,6 +39,10 @@
     "@babel/preset-react": "^7.16.0",
     "@babel/preset-typescript": "^7.16.0",
     "@babel/runtime": "^7.16.0",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-node-resolve": "^13.0.6",
+    "@rollup/plugin-typescript": "^8.3.0",
     "@types/react": "^17.0.34",
     "@typescript-eslint/eslint-plugin": "^5.3.1",
     "@typescript-eslint/parser": "^5.3.1",
@@ -42,11 +57,18 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^7.0.4",
     "lint-staged": "^11.2.6",
+    "pinst": "^2.1.6",
     "prettier": "^2.4.1",
     "react": "^17.0.2",
-    "typescript": "^4.4.4"
+    "rollup": "^2.60.0",
+    "typescript": "^4.4.4",
+    "yalc": "1.0.0-pre.50"
   },
   "peerDependencies": {
-    "react": "^16.0.0 || ^17.0.0|| ^18.0.0"
+    "react": ">=16.0.0"
+  },
+  "engines": {
+    "node": ">=14.17.0",
+    "yarn": ">=1.16.0"
   }
 }

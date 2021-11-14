@@ -22,6 +22,9 @@ npm-debug.log
 .editorconfig
 .storybook
 yarn.lock
+examples/*/.yalc
+exmaples/*/yalc.lock
+.husky
 
 # Project files
 coverage
@@ -29,3 +32,4 @@ stories
 tests
 examples
 __tests__
+build

@@ -15,7 +15,6 @@ type IRef = {
 
 function LazyContainer({ children, as, options }: ILazyContainer) {
   const Tag = as || 'div';
-
   const ref = React.useRef({} as IRef);
 
   const addItem: IAddItem = (node, callback) => {

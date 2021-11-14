@@ -3,7 +3,7 @@ import LazyItem from './Lazy.Item';
 import LazyPlaceHolder from './Lazy.Placeholder';
 
 export const Lazy = {
-  Contaniner: LazyContainer,
+  Container: LazyContainer,
   Item: LazyItem,
   Placeholder: LazyPlaceHolder,
 };

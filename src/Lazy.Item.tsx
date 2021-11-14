@@ -19,8 +19,11 @@ function LazyItem({ as, children, defaultVisibility }: ILazyItem) {
     rest: [],
   };
 
-  function onVisible(inViewPort: boolean, entry: IntersectionObserverEntry) {
+  function onVisible(inViewPort: boolean) {
     console.log('In view');
+    if (inViewPort) {
+      setVisible(true);
+    }
   }
 
   React.useEffect(() => {

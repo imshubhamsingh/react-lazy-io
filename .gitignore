@@ -4,6 +4,7 @@ node_modules
 reports
 example
 lib/
+build
 
 coverage/
 
@@ -15,3 +16,6 @@ npm-debug.log*
 .tern
 .tmp
 *.log
+
+yalc.lock
+.yalc
