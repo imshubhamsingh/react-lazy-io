@@ -17,19 +17,26 @@ function App() {
       </header>
       <div>
         <h1>Lazy Load Images</h1>
-        <Lazy.Container>
-          {/* {imageData.map((data) => (
+        <Lazy.Container
+          options={{
+            rootMargin: '0px 0px 100px 0px',
+          }}
+        >
+          {imageData.map((data) => (
             <Lazy.Item>
+              <Lazy.Placeholder
+                className="placeholder"
+                style={{ width: `${data.width}px`, height: `${data.height}px` }}
+              />
               <img
                 key={data.id}
-                url={data.url}
-                thumb={data.thumbnail}
+                src={data.url}
                 width={data.width}
                 height={data.height}
                 alt={data.id}
               />
             </Lazy.Item>
-          ))} */}
+          ))}
         </Lazy.Container>
       </div>
     </div>

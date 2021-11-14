@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IAddItem, LazyContextProvider } from './Lazy.context';
-import { generateObserver, INodes, observer } from './observer';
+import { generateObserver, observer } from './observer';
 
 export type ILazyContainer = {
   children: React.ReactElement;
@@ -8,14 +8,9 @@ export type ILazyContainer = {
   options: IntersectionObserverInit;
 };
 
-type IRef = {
-  nodes: INodes;
-  observer: IntersectionObserver;
-};
-
 function LazyContainer({ children, as, options }: ILazyContainer) {
   const Tag = as || 'div';
-  const ref = React.useRef({} as IRef);
+  const ref = React.useRef(generateObserver({ options }));
 
   const addItem: IAddItem = (node, callback) => {
     return observer({ ...ref.current, node, callback });
@@ -26,9 +21,9 @@ function LazyContainer({ children, as, options }: ILazyContainer) {
     ref.current = props;
 
     return () => {
-      props.observer.disconnect();
+      ref.current.observer.disconnect();
     };
-  }, []);
+  }, [options]);
 
   return (
     <LazyContextProvider addItem={addItem}>

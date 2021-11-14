@@ -12,6 +12,7 @@ function LazyItem({ as, children, defaultVisibility }: ILazyItem) {
   const Tag = as || 'div';
   const { addItem } = useLazy();
   const nodeRef = React.useRef<typeof Tag>();
+  const _unobserve = React.useRef(() => console.log);
   const [visible, setVisible] = React.useState(defaultVisibility ?? false);
 
   const slots = {
@@ -20,18 +21,19 @@ function LazyItem({ as, children, defaultVisibility }: ILazyItem) {
   };
 
   function onVisible(inViewPort: boolean) {
-    console.log('In view');
     if (inViewPort) {
       setVisible(true);
+      console.log('in view');
+      _unobserve.current();
     }
   }
 
   React.useEffect(() => {
     // @ts-ignore TODO: fix this
-    const unobserver = addItem(nodeRef, onVisible);
+    _unobserve.current = addItem(nodeRef.current, onVisible);
 
     return () => {
-      unobserver();
+      _unobserve.current();
     };
   }, []);
 
