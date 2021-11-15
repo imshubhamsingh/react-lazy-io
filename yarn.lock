@@ -1018,7 +1018,7 @@
     "@microsoft/tsdoc-config" "~0.15.2"
     "@rushstack/node-core-library" "3.43.2"
 
-"@microsoft/api-extractor@^7.12.1", "@microsoft/api-extractor@^7.18.19":
+"@microsoft/api-extractor@^7.18.19":
   version "7.18.19"
   resolved "https://registry.yarnpkg.com/@microsoft/api-extractor/-/api-extractor-7.18.19.tgz#f09afc1c210aa67e2f3f34b0a68281a12f144541"
   integrity sha512-aY+/XR7PtQXtnqNPFRs3/+iVRlQJpo6uLTjO2g7PqmnMywl3GBU3bCgAlV/khZtAQbIs6Le57XxmSE6rOqbcfg==
@@ -3203,13 +3203,6 @@ rimraf@^3.0.2:
   integrity sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==
   dependencies:
     glob "^7.1.3"
-
-rollup-plugin-api-extractor@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-api-extractor/-/rollup-plugin-api-extractor-0.2.2.tgz#1b2c9dbdb0ba7dd0310f6ee0ed4ff81ec2b445c8"
-  integrity sha512-v5EAGYQSyZPBTjrvJ+Ozf4HQYenjXSiXEvdbLZ81wQeeer2RWZ8VICzD6lI1aPxpSAe5PvZuT1RqBRi9OzUXqQ==
-  dependencies:
-    "@microsoft/api-extractor" "^7.12.1"
 
 rollup-plugin-dts@^4.0.1:
   version "4.0.1"

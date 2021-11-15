@@ -21,6 +21,49 @@ export type ILazyItemProps = {
   defaultVisibility?: boolean;
 };
 
+type LazyItemOptions = {
+  /**
+   * Control default visibility; default is set to false
+   */
+  defaultVisibility?: boolean;
+  /**
+   * Callback when then visibility change to true
+   */
+  onChange?: () => void;
+};
+
+/**
+ * React hook for LazyItem for more granular control.
+ */
+export function useLazyItem({ defaultVisibility, onChange }: LazyItemOptions) {
+  const [visible, setVisible] = React.useState(defaultVisibility ?? false);
+  const ref = React.useRef<Element>(null);
+
+  const { addItem } = useLazy();
+  const _unobserve = React.useRef<() => void>(() => console.log);
+
+  const onVisible = React.useCallback(
+    (inViewPort: boolean) => {
+      if (inViewPort) {
+        setVisible(true);
+        onChange?.();
+        _unobserve.current();
+      }
+    },
+    [onChange],
+  );
+
+  React.useEffect(() => {
+    _unobserve.current = addItem(ref.current, onVisible);
+
+    return () => {
+      _unobserve.current();
+    };
+  }, [addItem, onVisible, ref]);
+
+  return { visible, ref };
+}
+
 function LazyItem({
   as,
   children,
@@ -28,30 +71,12 @@ function LazyItem({
   changeWhen = (visible) => visible,
 }: ILazyItemProps) {
   const Tag = as || 'div';
-  const { addItem } = useLazy();
-  const nodeRef = React.useRef<Element>(null);
-  const _unobserve = React.useRef<() => void>(() => console.log);
-  const [visible, setVisible] = React.useState(defaultVisibility ?? false);
+  const { visible, ref } = useLazyItem({ defaultVisibility });
 
   const slots = {
     placeholder: null,
     rest: [],
   };
-
-  function onVisible(inViewPort: boolean) {
-    if (inViewPort) {
-      setVisible(true);
-      _unobserve.current();
-    }
-  }
-
-  React.useEffect(() => {
-    _unobserve.current = addItem(nodeRef.current, onVisible);
-
-    return () => {
-      _unobserve.current();
-    };
-  }, [addItem]);
 
   React.Children.forEach(children, (child) => {
     switch (child.type) {
@@ -67,9 +92,7 @@ function LazyItem({
 
   return (
     //@ts-ignore TODO: see if this can be fixed
-    <Tag ref={nodeRef}>
-      {changeWhen(visible) ? slots.rest : slots.placeholder}
-    </Tag>
+    <Tag ref={ref}>{changeWhen(visible) ? slots.rest : slots.placeholder}</Tag>
   );
 }
 

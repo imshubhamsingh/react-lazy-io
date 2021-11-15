@@ -4,7 +4,6 @@ import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
 import dts from 'rollup-plugin-dts';
-import { apiExtractor } from 'rollup-plugin-api-extractor';
 
 import pkg from './package.json';
 

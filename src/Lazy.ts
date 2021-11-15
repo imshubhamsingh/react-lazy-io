@@ -1,5 +1,5 @@
 import LazyContainer from './Lazy.Container';
-import LazyItem from './Lazy.Item';
+import LazyItem, { useLazyItem } from './Lazy.Item';
 import LazyPlaceHolder from './Lazy.Placeholder';
 
 export const Lazy = {
@@ -16,3 +16,5 @@ export const Lazy = {
    */
   Placeholder: LazyPlaceHolder,
 };
+
+export { useLazyItem };
