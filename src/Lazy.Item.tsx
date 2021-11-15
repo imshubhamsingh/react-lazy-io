@@ -35,7 +35,10 @@ type LazyItemOptions = {
 /**
  * React hook for LazyItem for more granular control.
  */
-export function useLazyItem({ defaultVisibility, onChange }: LazyItemOptions) {
+export function useLazyItem({
+  defaultVisibility,
+  onChange,
+}: LazyItemOptions = {}) {
   const [visible, setVisible] = React.useState(defaultVisibility ?? false);
   const ref = React.useRef<Element>(null);
 
@@ -69,6 +72,7 @@ function LazyItem({
   children,
   defaultVisibility,
   changeWhen = (visible) => visible,
+  ...restProps
 }: ILazyItemProps) {
   const Tag = as || 'div';
   const { visible, ref } = useLazyItem({ defaultVisibility });
@@ -92,7 +96,9 @@ function LazyItem({
 
   return (
     //@ts-ignore TODO: see if this can be fixed
-    <Tag ref={ref}>{changeWhen(visible) ? slots.rest : slots.placeholder}</Tag>
+    <Tag {...restProps} ref={ref}>
+      {changeWhen(visible) ? slots.rest : slots.placeholder}
+    </Tag>
   );
 }
 

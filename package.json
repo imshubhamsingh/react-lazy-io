@@ -13,7 +13,7 @@
     "lint": "eslint .",
     "lint-staged": "lint-staged",
     "postinstall": "husky install",
-    "local:publish": "yalc publish",
+    "local:publish": "yarn run build:dev && yarn run type:extract",
     "prepublishOnly": "yarn run build:prod && yarn run type:extract && pinst --disable",
     "postpublish": "pinst --enable",
     "tsc": "tsc",
@@ -35,6 +35,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/imshubhamsingh/react-lazy-io.git"
+  },
+  "bugs": {
+    "url": "https://github.com/imshubhamsingh/react-lazy-io.git/issues"
   },
   "keywords": [
     "react",
@@ -92,5 +95,8 @@
   "engines": {
     "node": ">=14.17.0",
     "yarn": ">=1.16.0"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }

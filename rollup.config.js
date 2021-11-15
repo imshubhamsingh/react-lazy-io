@@ -14,7 +14,7 @@ const isProduction = (env) => env === 'production';
  */
 export default (args) => {
   process.env.NODE_ENV = args.environment;
-
+  console.log(process.env.NODE_ENV);
   let config = {
     input: ['./src/Lazy.ts'],
     output: [
@@ -46,13 +46,16 @@ export default (args) => {
       typescript(),
       resolve(),
       babel({ exclude: '**/node_modules', babelHelpers: 'runtime' }),
-      isProduction(process.env.NODE_ENV) &&
-        terser({
-          compress: {
-            drop_console: true,
-            drop_debugger: true,
-          },
-        }),
+      ...(isProduction(process.env.NODE_ENV)
+        ? [
+            terser({
+              compress: {
+                drop_console: true,
+                drop_debugger: true,
+              },
+            }),
+          ]
+        : []),
     ],
   };
 

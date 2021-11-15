@@ -16,7 +16,12 @@ type IObserver = {
   observer: IntersectionObserver;
 };
 
-export function generateObserver({ options }: IGenerateObserver) {
+export type Observer = {
+  nodes: INodes;
+  observer: IntersectionObserver;
+};
+
+export function generateObserver({ options }: IGenerateObserver): Observer {
   const nodes: INodes = new Map();
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {

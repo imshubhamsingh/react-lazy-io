@@ -114,6 +114,52 @@ function Component() {
 }
 ```
 
+### Lazy.Image
+
+This components is a sweet lazy loaded image baked with simple transition. The
+placeholder for the image is is passed on as a child of it, in the form of
+`Lazy.Placeholder`. It takes various props as:
+
+- as: DOM node tag name
+- height: Image height
+- width: Image width
+- src: Image src
+- alt: Image alt
+- transitionDuration: Image visibility transition value in seconds
+
+#### Example
+
+```jsx
+import React from 'react';
+import { Lazy } from 'react-lazy-io';
+import imageData from './images.json';
+
+function Component() {
+  return (
+    <Lazy.Container
+      options={{
+        rootMargin: '0px 0px 100px 0px',
+      }}
+    >
+      {imageData.map((data) => (
+        <Lazy.Image
+          src={data.url}
+          width={data.width}
+          height={data.height}
+          alt={data.id}
+          transitionDuration={1.5}
+        >
+          <Lazy.Placeholder
+            className="placeholder"
+            style={{ width: `${data.width}px`, height: `${data.height}px` }}
+          />
+        </Lazy.Image>
+      ))}
+    </Lazy.Container>
+  );
+}
+```
+
 ## 🪝 Hooks
 
 ### useLazyItem

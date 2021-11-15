@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IAddItem, LazyContextProvider } from './Lazy.context';
-import { generateObserver, observer } from './observer';
+import { generateObserver, Observer, observer } from './observer';
 
 export type ILazyContainerProps = {
   /**
@@ -19,7 +19,7 @@ export type ILazyContainerProps = {
 
 function LazyContainer({ children, as, options }: ILazyContainerProps) {
   const Tag = as || 'div';
-  const ref = React.useRef(generateObserver({ options }));
+  const ref = React.useRef<Observer>();
 
   const addItem: IAddItem = (node, callback) => {
     return observer({ ...ref.current, node, callback });
