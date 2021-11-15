@@ -144,6 +144,19 @@ function Component(){
 };
 ```
 
+## 📟 Polyfill
+
+As the library depends on Intersection Observer web API which is almost
+supported by all modern browser. But if in case you have some application for
+older browser especially <= IE11, then I would suggest to also import a
+[intersection-observers](https://www.npmjs.com/package/intersection-observer)
+side effect into your project.
+
+```jsx
+// import the polyfill before using this library.
+import 'intersection-observer';
+```
+
 ## ✍️ Author
 
 [@imshubhamsingh\_](https://twitter.com/imshubhamsingh_)
