@@ -12,16 +12,25 @@ export type ILazyItemProps = {
    */
   as?: keyof JSX.IntrinsicElements;
   /**
+   * Control visibility logic
+   */
+  changeWhen?: (visibility: boolean) => boolean;
+  /**
    * Control default visibility; default is set to false
    */
   defaultVisibility?: boolean;
 };
 
-function LazyItem({ as, children, defaultVisibility }: ILazyItemProps) {
+function LazyItem({
+  as,
+  children,
+  defaultVisibility,
+  changeWhen = (visible) => visible,
+}: ILazyItemProps) {
   const Tag = as || 'div';
   const { addItem } = useLazy();
-  const nodeRef = React.useRef<typeof Tag>();
-  const _unobserve = React.useRef(() => console.log);
+  const nodeRef = React.useRef<Element>(null);
+  const _unobserve = React.useRef<() => void>(() => console.log);
   const [visible, setVisible] = React.useState(defaultVisibility ?? false);
 
   const slots = {
@@ -37,7 +46,6 @@ function LazyItem({ as, children, defaultVisibility }: ILazyItemProps) {
   }
 
   React.useEffect(() => {
-    // @ts-ignore TODO: fix this
     _unobserve.current = addItem(nodeRef.current, onVisible);
 
     return () => {
@@ -48,19 +56,21 @@ function LazyItem({ as, children, defaultVisibility }: ILazyItemProps) {
   React.Children.forEach(children, (child) => {
     switch (child.type) {
       case LazyPlaceHolder: {
-        // @ts-ignore TODO: fix this
         slots.placeholder = child;
         break;
       }
       default: {
-        // @ts-ignore TODO: fix this
         slots.rest.push(child);
       }
     }
   });
 
-  // @ts-ignore TODO: fix this
-  return <Tag ref={nodeRef}>{visible ? slots.rest : slots.placeholder}</Tag>;
+  return (
+    //@ts-ignore TODO: see if this can be fixed
+    <Tag ref={nodeRef}>
+      {changeWhen(visible) ? slots.rest : slots.placeholder}
+    </Tag>
+  );
 }
 
 export default LazyItem;
