@@ -147,3 +147,6 @@ function Component(){
 ## ✍️ Author
 
 [@imshubhamsingh\_](https://twitter.com/imshubhamsingh_)
+
+P.S. This is my first time creating a fully typed library. I learnt a lot here.
+Maybe in coming days will share my learning via a blog.

@@ -36,6 +36,15 @@
     "type": "git",
     "url": "https://github.com/imshubhamsingh/react-lazy-io.git"
   },
+  "keywords": [
+    "react",
+    "Intersection Observer",
+    "Compound component",
+    "rollup",
+    "react-lazy",
+    "react-lazyload",
+    "react-lazyload-image"
+  ],
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/plugin-proposal-class-properties": "^7.16.0",
