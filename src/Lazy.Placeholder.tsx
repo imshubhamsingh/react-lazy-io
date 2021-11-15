@@ -1,13 +1,16 @@
 import * as React from 'react';
-type LazyPlaceholderProps = {
+export interface ILazyPlaceholderProps
+  extends React.HTMLAttributes<HTMLOrSVGElement> {
   as: keyof JSX.IntrinsicElements;
-};
+}
 
-const LazyPlaceHolder: React.FunctionComponent<
-  LazyPlaceholderProps & React.HTMLAttributes<HTMLOrSVGElement>
-> = ({ as = 'div', children, ...props }) => {
+function LazyPlaceHolder({
+  as = 'div',
+  children,
+  ...props
+}: ILazyPlaceholderProps) {
   const Tag = as || 'div';
   return <Tag {...props}>{children}</Tag>;
-};
+}
 
 export default LazyPlaceHolder;

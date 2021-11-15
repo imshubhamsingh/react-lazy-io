@@ -5,6 +5,7 @@ reports
 example
 lib/
 build
+dist
 
 coverage/
 

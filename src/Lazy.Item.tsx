@@ -2,13 +2,22 @@ import * as React from 'react';
 import { useLazy } from './Lazy.context';
 import LazyPlaceHolder from './Lazy.Placeholder';
 
-export type ILazyItem = {
+export type ILazyItemProps = {
+  /**
+   * Item React children
+   */
   children: React.ReactElement;
+  /**
+   * Tag name for the DOM node added by Item
+   */
   as?: keyof JSX.IntrinsicElements;
+  /**
+   * Control default visibility; default is set to false
+   */
   defaultVisibility?: boolean;
 };
 
-function LazyItem({ as, children, defaultVisibility }: ILazyItem) {
+function LazyItem({ as, children, defaultVisibility }: ILazyItemProps) {
   const Tag = as || 'div';
   const { addItem } = useLazy();
   const nodeRef = React.useRef<typeof Tag>();
@@ -23,7 +32,6 @@ function LazyItem({ as, children, defaultVisibility }: ILazyItem) {
   function onVisible(inViewPort: boolean) {
     if (inViewPort) {
       setVisible(true);
-      console.log('in view');
       _unobserve.current();
     }
   }
@@ -35,7 +43,7 @@ function LazyItem({ as, children, defaultVisibility }: ILazyItem) {
     return () => {
       _unobserve.current();
     };
-  }, []);
+  }, [addItem]);
 
   React.Children.forEach(children, (child) => {
     switch (child.type) {
@@ -55,4 +63,4 @@ function LazyItem({ as, children, defaultVisibility }: ILazyItem) {
   return <Tag ref={nodeRef}>{visible ? slots.rest : slots.placeholder}</Tag>;
 }
 
-export default React.forwardRef(LazyItem);
+export default LazyItem;

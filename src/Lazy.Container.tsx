@@ -2,13 +2,22 @@ import * as React from 'react';
 import { IAddItem, LazyContextProvider } from './Lazy.context';
 import { generateObserver, observer } from './observer';
 
-export type ILazyContainer = {
+export type ILazyContainerProps = {
+  /**
+   * Container React children
+   */
   children: React.ReactElement;
+  /**
+   * Tag name for the DOM node added by container
+   */
   as?: keyof JSX.IntrinsicElements;
+  /**
+   * Intersection Observer options
+   */
   options: IntersectionObserverInit;
 };
 
-function LazyContainer({ children, as, options }: ILazyContainer) {
+function LazyContainer({ children, as, options }: ILazyContainerProps) {
   const Tag = as || 'div';
   const ref = React.useRef(generateObserver({ options }));
 
