@@ -1,6 +1,6 @@
 {
   "name": "react-lazy-io",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "react lazyload using using IntersectionObserver API",
   "main": "dist/react-lazy-io.js",
   "module": "dist/react-lazy-io.esm.js",
