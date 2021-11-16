@@ -17,6 +17,12 @@ from the observer.
 ## 🧑🏻‍💻 Install
 
 ```
+npm install react-lazy-io
+```
+
+or
+
+```
 yarn add react-lazy-io
 ```
 
@@ -190,6 +196,14 @@ function Component(){
 };
 ```
 
+## Features
+
+- 💫 Compound Component structure
+- 🌳 Tree-shakeable
+- 💥 [Tiny bundle](https://bundlephobia.com/package/react-lazy-io) ~1.6 kB
+  gzipped
+- 🖥 SSR friendly
+
 ## 📟 Polyfill
 
 As the library depends on Intersection Observer web API which is almost
@@ -209,3 +223,11 @@ import 'intersection-observer';
 
 P.S. This is my first time creating a fully typed library. I learnt a lot here.
 Maybe in coming days will share my learning via a blog.
+
+## 🗂 TODO
+
+- [x] Create Intersection Observer Component and its child components
+- [x] Explore `Lazy.Image` component
+- [x] SSR friendly
+- [ ] Explore `Lazy.Suspense` component
+- [ ] Add tests
