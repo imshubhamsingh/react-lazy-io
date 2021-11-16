@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version)
 for commit guidelines.
 
+## [0.1.0](https://github.com/imshubhamsingh/react-lazy-io/compare/v0.0.2...v0.1.0) (2021-11-16)
+
+### Features
+
+- added lazy suspense
+  ([07cc778](https://github.com/imshubhamsingh/react-lazy-io/commit/07cc77876f7d07dd6952176ace51eb3861249287))
+
 ### [0.0.2](https://github.com/imshubhamsingh/react-lazy-io/compare/v0.0.1...v0.0.2) (2021-11-15)
 
 ### Features
