@@ -1,6 +1,8 @@
+import React from 'react';
 import { Lazy } from 'react-lazy-io';
 import './App.css';
-import imageData from './data/images.json';
+
+const MyAwesomeComponent = React.lazy(() => import('./MyAwesomeComponent'));
 
 function App() {
   return (
@@ -19,24 +21,13 @@ function App() {
         <h1>Lazy Load Images</h1>
         <Lazy.Container
           options={{
-            rootMargin: '0px 0px 100px 0px',
+            rootMargin: '0px 0px 0px 0px',
           }}
         >
-          {imageData.map((data) => (
-            <Lazy.Item>
-              <Lazy.Placeholder
-                className="placeholder"
-                style={{ width: `${data.width}px`, height: `${data.height}px` }}
-              />
-              <img
-                key={data.id}
-                src={data.url}
-                width={data.width}
-                height={data.height}
-                alt={data.id}
-              />
-            </Lazy.Item>
-          ))}
+          <Lazy.Suspense>
+            <Lazy.Placeholder className="placeholder" />
+            <MyAwesomeComponent />
+          </Lazy.Suspense>
         </Lazy.Container>
       </div>
     </div>

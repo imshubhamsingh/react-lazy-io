@@ -19,7 +19,9 @@ export type ILazyContainerProps = {
 
 function LazyContainer({ children, as, options }: ILazyContainerProps) {
   const Tag = as || 'div';
-  const ref = React.useRef<Observer>();
+  const ref = React.useRef<Observer>(
+    typeof window === 'undefined' ? null : generateObserver({ options }),
+  );
 
   const addItem: IAddItem = (node, callback) => {
     return observer({ ...ref.current, node, callback });
