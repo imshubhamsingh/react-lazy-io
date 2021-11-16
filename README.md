@@ -10,9 +10,9 @@ determine the visibility of images. In my original, implementation all the
 elements were creating their Intersection Observer, which is fine as long as
 there are limited elements. But to take it to the next level, a question arises:
 What if I can use a single listener or observer for my Lazy loaded element. This
-library is a simple approach toward it using context to store a single observer
-instance and using a lookup functionally the Lazy items can be added and deleted
-from the observer.
+library is a simple approach toward using context to share a single observer
+instance and using a lookup functionally, the Lazy items can be added and
+deleted from the observer.
 
 ## 🧑🏻‍💻 Install
 
@@ -123,7 +123,7 @@ function Component() {
 ### Lazy.Image
 
 This components is a sweet lazy loaded image baked with simple transition. The
-placeholder for the image is is passed on as a child of it, in the form of
+placeholder for the image is passed on as a child of it, in the form of
 `Lazy.Placeholder`. It takes various props as:
 
 - as: DOM node tag name
@@ -161,6 +161,37 @@ function Component() {
           />
         </Lazy.Image>
       ))}
+    </Lazy.Container>
+  );
+}
+```
+
+### Lazy.Suspense
+
+Here I tried to combine Intersection Observer with React Suspense and lazy API
+that will load Dynamic component when ever it is about to appear close to
+browser viewport. The placeholder for the dynamic component is passed on as a
+child of it, in the form of `Lazy.Placeholder` which is also passed as fallback
+to Suspense
+
+#### Example
+
+```jsx
+import React from 'react';
+import { Lazy } from 'react-lazy-io';
+const MyAwesomeComponent = React.lazy(() => import('./MyAwesomeComponent'));
+
+function Component() {
+  return (
+    <Lazy.Container
+      options={{
+        rootMargin: '0px 0px 100px 0px',
+      }}
+    >
+      <Lazy.Suspense>
+        <Lazy.Placeholder className="placeholder" />
+        <MyAwesomeComponent />
+      </Lazy.Suspense>
     </Lazy.Container>
   );
 }

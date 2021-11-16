@@ -2,6 +2,7 @@ import LazyContainer from './Lazy.Container';
 import LazyImage from './Lazy.Image';
 import LazyItem, { useLazyItem } from './Lazy.Item';
 import LazyPlaceHolder from './Lazy.Placeholder';
+import LazySuspense from './Lazy.Suspense';
 
 export const Lazy = {
   /**
@@ -20,6 +21,10 @@ export const Lazy = {
    * Lazy image - A basic lazy loaded transition image by controlling opacity
    */
   Image: LazyImage,
+  /**
+   * Lazy Suspense - Fetch Components dynamically using Suspense with help of Intersection Observer
+   */
+  Suspense: LazySuspense,
 };
 
 export { useLazyItem };
