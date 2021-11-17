@@ -260,5 +260,5 @@ Maybe in coming days will share my learning via a blog.
 - [x] Create Intersection Observer Component and its child components
 - [x] Explore `Lazy.Image` component
 - [x] SSR friendly
-- [ ] Explore `Lazy.Suspense` component
-- [ ] Add tests
+- [x] Explore `Lazy.Suspense` component
+- [ ] Add tests - I guess to lazy to write it.
